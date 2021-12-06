@@ -18,7 +18,7 @@ export default {
   css: ['balm-ui/dist/balm-ui.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['@/plugins/balm-ui'],
+  plugins: ['@/plugins/balm-ui', '~/plugins/vue-youtube'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
