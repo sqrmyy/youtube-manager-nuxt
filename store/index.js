@@ -59,6 +59,12 @@ export const actions = {
     commit('mutateToken', token)
     this.app.router.push('/')
   },
+  async logout({ commit }) {
+    await firebase.auth().signOut()
+    commit('mutateToken', null)
+    this.$cookies.remove('jwt_token')
+    this.app.router.push('/')
+  },
 }
 
 export const mutations = {
