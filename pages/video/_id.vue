@@ -19,6 +19,21 @@
             </div>
           </div>
 
+          <div v-if="isLoggedIn" class="level-right">
+            <a href="#" @click.prevent="toggleFavorite">
+              <span class="icon is-large">
+                <span class="fa-stack fa-lg">
+                  <i
+                    class="fas fa-heart fa-stack-1x"
+                    :class="[
+                      item.isFavorite ? 'active' : 'has-text-grey-light',
+                    ]"
+                  ></i>
+                </span>
+              </span>
+            </a>
+          </div>
+
           <hr />
           <p>{{ item.snippet.description }}</p>
         </div>
@@ -74,6 +89,16 @@ export default {
     relatedItems() {
       return this.$store.getters.getRelatedVideos
     },
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn
+    },
+  },
+  methods: {
+    async toggleFavorite() {
+      await this.$store.dispatch('toggleFavorite', {
+        uri: ROUTES.POST.TOGGLE_FAVORITE.replace(':id', this.$route.params.id),
+      })
+    },
   },
 }
 </script>
@@ -85,5 +110,8 @@ iframe {
 }
 .video-player {
   max-width: 880px;
+}
+.fa-heart.active {
+  color: #ff1493;
 }
 </style>
